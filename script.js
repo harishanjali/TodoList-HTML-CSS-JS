@@ -63,6 +63,8 @@ window.addEventListener('keydown',function(event){
             return;
         }
         createTaskElement(input.value);
+        saveLocalTasks(input.value);
         input.value = "";
+        
     }
 })
