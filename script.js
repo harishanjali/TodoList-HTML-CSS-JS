@@ -7,7 +7,10 @@ document.addEventListener('DOMContentLoaded', getTasks);
 
 // Add task event
 addBtn.addEventListener('click', () => {
-    if (input.value.trim() === "") return;
+    if (input.value.trim() === ""){
+        alert('Please Enter text in input field');
+        return;
+    } 
     
     createTaskElement(input.value);
     saveLocalTasks(input.value);
@@ -16,6 +19,7 @@ addBtn.addEventListener('click', () => {
 
 // Create the task UI component
 function createTaskElement(text) {
+    
     const li = document.createElement('li');
     li.innerHTML = `
         <span>${text}</span>
@@ -50,3 +54,15 @@ function removeLocalTask(taskText) {
     const filteredTasks = tasks.filter(t => t !== taskText);
     localStorage.setItem('tasks', JSON.stringify(filteredTasks));
 }
+
+//onclick of enter button
+window.addEventListener('keydown',function(event){
+    if(event.key=='Enter'){
+        if (input.value==''){
+            alert('Please Enter text in input field');
+            return;
+        }
+        createTaskElement(input.value);
+        input.value = "";
+    }
+})
